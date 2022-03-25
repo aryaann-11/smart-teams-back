@@ -10,4 +10,4 @@ class Task(models.Model):
         return self.title 
     
     def serialize(self):
-        return {"title":self.title,"status":self.status}
+        return {"title":self.title,"status":self.status,"id":self.id}
