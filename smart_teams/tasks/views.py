@@ -23,3 +23,11 @@ def update_tasks(request):
             task.status = new_task['status']
             task.save()
     return JsonResponse({'message':'tasks updated successfully'}, status=200)
+
+@api_view(['POST'])
+def add_task(request):
+    data = json.loads(request.body)
+    new_task = data['task']
+    task = Task.objects.create(title=new_task['title'],status=-1)
+    task.save()
+    return JsonResponse({'message':'task added successfully','task':task.serialize()},status=200)
